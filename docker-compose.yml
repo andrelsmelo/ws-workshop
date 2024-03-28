@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  #interface:
+  #  build: ./interface
+  #  ports:
+  #    - "3035:3035"
+  #  volumes:
+  #    - ./:/app
+  #  depends_on:
+  #    - api
+#
+  #api:
+  #  build: ./api
+  #  ports:
+  #    - "8085:8085"
+  #  depends_on:
+  #    - postgres
+  #    - mongo
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: your_postgres_user
+      POSTGRES_PASSWORD: your_postgres_password
+      POSTGRES_DB: your_postgres_database
+    volumes:
+      - postgres-data:/var/lib/postgresql/data  # Persistent storage for Postgres data
+
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: your_mongo_username
+      MONGO_INITDB_ROOT_PASSWORD: your_mongo_password
+    volumes:
+      - mongo-data:/data/db  # Persistent storage for MongoDB data
+
+volumes:
+  postgres-data: {}
+  mongo-data: {}
